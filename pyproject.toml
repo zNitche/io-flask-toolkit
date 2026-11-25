@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools==84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["app*", "tests*", "requirements*"]
+
+[project]
+name = "io_flask_toolkit"
+dynamic = ["version"]
+authors = [
+  { name = "zNitche" },
+]
+description = "a bunch of useful modules for flask powered apps"
+readme = "README.md"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "License :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.10"
+
+[tool.setuptools.dynamic]
+version = {attr = "io_flask_toolkit.__version__"}
+
+[project.urls]
+Homepage = "https://github.com/zNitche/io-flask-toolkit"
+Issues = "https://github.com/zNitche/io-flask-toolkit/issues"
