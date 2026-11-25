@@ -8,6 +8,7 @@ exclude = ["app*", "tests*", "requirements*"]
 [project]
 name = "io_flask_toolkit"
 dynamic = ["version"]
+dependencies = []
 authors = [
   { name = "zNitche" },
 ]
@@ -20,6 +21,13 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 requires-python = ">=3.10"
+
+[project.optional-dependencies]
+db = [
+    "SQLAlchemy==2.1.9",
+    "alembic==1.20.1"
+]
+all = ["io_flask_toolkit[db]"]
 
 [tool.setuptools.dynamic]
 version = {attr = "io_flask_toolkit.__version__"}
