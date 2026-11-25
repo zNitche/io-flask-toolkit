@@ -1,0 +1,1 @@
+from io_remastered.io_logging.adapters.extendable_logs_adapter import ExtendableLogsAdapter
