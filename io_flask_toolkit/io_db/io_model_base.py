@@ -4,7 +4,7 @@ from sqlalchemy.orm import scoped_session, DeclarativeBase, Session
 from io_db.helpers import Query
 
 
-class ModelBase(DeclarativeBase):
+class IoModelBase(DeclarativeBase):
     # https://alembic.sqlalchemy.org/en/latest/naming.html
     metadata = MetaData(naming_convention={
         "ix": "ix_%(column_0_label)s",

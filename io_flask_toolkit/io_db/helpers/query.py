@@ -6,14 +6,14 @@ from sqlalchemy import ScalarResult, Select, ColumnExpressionArgument
 
 # additional for pylance I guess...
 if TYPE_CHECKING:
-    from io_db import ModelBase
+    from io_db import IoModelBase
 
 # some syntax sugar for avoiding calling
 # next_chapter = Chapter.query(Chapter.select().filter_by(work_id=self.work_id)).first()
 # instead we can
 # next_chapter = Chapter.query().filter_by(work_id=self.work_id).first()
 
-T = TypeVar("T", bound="ModelBase")
+T = TypeVar("T", bound="IoModelBase")
 
 
 class Query(Generic[T]):

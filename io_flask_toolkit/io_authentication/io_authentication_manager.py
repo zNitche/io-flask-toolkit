@@ -3,8 +3,8 @@ from uuid import uuid4
 from dataclasses import dataclass
 from datetime import datetime
 from flask import g, session
-from io_flask_toolkit.io_extras import InMemoryDatabase
-from io_flask_toolkit.io_authentication.models.base_user_model import BaseUserModel 
+from io_flask_toolkit.io_extras import IoInMemoryDatabase
+from io_flask_toolkit.io_authentication.models.io_base_user_model import IoBaseUserModel 
 
 
 @dataclass
@@ -22,9 +22,9 @@ class UserSessionsDetails:
     is_current: bool
 
 
-class AuthenticationManager:
-    def __init__(self, auth_db: InMemoryDatabase,
-                 user_model: type[BaseUserModel],
+class IoAuthenticationManager:
+    def __init__(self, auth_db: IoInMemoryDatabase,
+                 user_model: type[IoBaseUserModel],
                  logged_in_route: str,
                  password_authentication_route: str | None = None):
 
@@ -85,10 +85,10 @@ class AuthenticationManager:
         return True if key is not None else False
 
     @property
-    def current_user(self) -> BaseUserModel:
+    def current_user(self) -> IoBaseUserModel:
         return g.get("io_current_user", None)
 
-    def user_for_token(self, token: str | None) -> BaseUserModel | None:
+    def user_for_token(self, token: str | None) -> IoBaseUserModel | None:
         if not token:
             return None
 
@@ -110,8 +110,7 @@ class AuthenticationManager:
             return None
 
         user_id = int(split_key[1])
-
-        user = BaseUserModel.query().filter_by(id=user_id).first()
+        user = IoBaseUserModel.query().filter_by(id=user_id).first()
 
         return user
 

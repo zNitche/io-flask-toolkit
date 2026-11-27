@@ -1,4 +1,4 @@
-from io_flask_toolkit.io_db.model_base import ModelBase
+from io_flask_toolkit.io_db.io_model_base import IoModelBase
 
-from io_flask_toolkit.io_db.database import Database
-from io_flask_toolkit.io_db.pagination import Pagination
+from io_flask_toolkit.io_db.io_database import IoDatabase
+from io_flask_toolkit.io_db.pagination import IoPagination

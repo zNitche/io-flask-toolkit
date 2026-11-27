@@ -1,2 +1,2 @@
-from io_flask_toolkit.io_extras.in_memory_database import InMemoryDatabase
+from io_flask_toolkit.io_extras.io_in_memory_database import IoInMemoryDatabase
 from io_flask_toolkit.io_extras.zip_on_the_fly import ZipOnTheFly

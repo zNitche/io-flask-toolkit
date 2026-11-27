@@ -18,8 +18,7 @@ if config.config_file_name is not None:
 
 
 def get_target_metadata():
-    from ao3_web_reader.db import ModelBase
-    from ao3_web_reader import models
+    from io_flask_toolkit.io_db import ModelBase
 
     return ModelBase.metadata
 

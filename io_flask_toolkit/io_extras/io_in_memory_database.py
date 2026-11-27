@@ -2,7 +2,7 @@ from whimdb import Client
 import json
 
 
-class InMemoryDatabase:
+class IoInMemoryDatabase:
     def __init__(self, db_id: int):
         self.db_id: int = db_id
 

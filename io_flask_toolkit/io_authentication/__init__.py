@@ -1,2 +1,2 @@
-from io_flask_toolkit.io_authentication.authentication_manager import AuthenticationManager
+from io_flask_toolkit.io_authentication.io_authentication_manager import IoAuthenticationManager
 from io_flask_toolkit.io_authentication import decorators

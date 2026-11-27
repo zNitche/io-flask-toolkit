@@ -1,10 +1,10 @@
 from contextlib import contextmanager
 from sqlalchemy import create_engine, Engine, exc
 from sqlalchemy.orm import scoped_session, sessionmaker, Session
-from io_db import ModelBase
+from io_db import IoModelBase
 
 
-class Database:
+class IoDatabase:
     def __init__(self):
         self.engine: Engine | None = None
         self.session_maker: sessionmaker[Session] | None = None
@@ -21,8 +21,8 @@ class Database:
         if self.session is None or self.engine is None:
             raise Exception("session doesn't exist!")
 
-        ModelBase.metadata.create_all(bind=self.engine)
-        ModelBase.get_db_session = lambda: self.session
+        IoModelBase.metadata.create_all(bind=self.engine)
+        IoModelBase.get_db_session = lambda: self.session
 
 
     def __create_session_maker(self):

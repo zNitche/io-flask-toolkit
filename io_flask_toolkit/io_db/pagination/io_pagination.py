@@ -1,11 +1,11 @@
 from typing import TypeVar
 from sqlalchemy import Select
 from io_db.helpers import Query
-from io_db.model_base import ModelBase
+from io_flask_toolkit.io_db.io_model_base import IoModelBase
 
-T = TypeVar("T", bound="ModelBase")
+T = TypeVar("T", bound="IoModelBase")
 
-class Pagination:
+class IoPagination:
     def __init__(self, query: Query[T], page_id: int, items_per_page=25):
         self.__query = query
 

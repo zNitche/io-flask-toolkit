@@ -1,11 +1,11 @@
 from functools import wraps
 from datetime import datetime
-from io_authentication import AuthenticationManager
+from io_authentication import IoAuthenticationManager
 from io_flask_toolkit import FLASK_EXTENSION_NAME
 from flask import redirect, url_for, session, abort, g, request, current_app
 
 
-def __get_auth_manager() -> AuthenticationManager:
+def __get_auth_manager() -> IoAuthenticationManager:
     return current_app.extensions[FLASK_EXTENSION_NAME].authentication_manager
 
 
