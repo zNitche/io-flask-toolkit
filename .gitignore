@@ -222,4 +222,13 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+.idea
+__pycache__
+logs/
+database/
+*.db
+.env
+.pytest_cache/
+*.json
 .DS_Store
+*.pem

@@ -1,4 +1,5 @@
 from flask import Flask
+from config import Config
 from io_flask_toolkit import IoFlaskToolkit
 
 
@@ -11,8 +12,11 @@ def register_blueprints(app: Flask):
     app.register_blueprint(blueprints.core_blueprint)
 
 
-def create_app():
-    app = Flask(__name__, instance_relative_config=False, static_folder=None)
+def create_app(config_class=Config):
+    app = Flask(__name__, instance_relative_config=False)
+
+    app.secret_key = "debug_secret"
+    app.config.from_object(config_class)
 
     with app.app_context():
         register_blueprints(app)
