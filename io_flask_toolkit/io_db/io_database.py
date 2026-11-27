@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from sqlalchemy import create_engine, Engine, exc
 from sqlalchemy.orm import scoped_session, sessionmaker, Session
-from io_db import IoModelBase
+from io_flask_toolkit.io_db import IoModelBase
 
 
 class IoDatabase:
@@ -16,8 +16,6 @@ class IoDatabase:
         self.session = self.get_session()
 
     def create_all(self):
-        # from ao3_web_reader import models
-
         if self.session is None or self.engine is None:
             raise Exception("session doesn't exist!")
 

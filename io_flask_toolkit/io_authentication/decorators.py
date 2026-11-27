@@ -1,6 +1,6 @@
 from functools import wraps
 from datetime import datetime
-from io_authentication import IoAuthenticationManager
+from io_flask_toolkit.io_authentication import IoAuthenticationManager
 from io_flask_toolkit import FLASK_EXTENSION_NAME
 from flask import redirect, url_for, session, abort, g, request, current_app
 

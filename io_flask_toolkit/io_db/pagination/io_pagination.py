@@ -1,6 +1,5 @@
 from typing import TypeVar
-from sqlalchemy import Select
-from io_db.helpers import Query
+from io_flask_toolkit.io_db.helpers import Query
 from io_flask_toolkit.io_db.io_model_base import IoModelBase
 
 T = TypeVar("T", bound="IoModelBase")

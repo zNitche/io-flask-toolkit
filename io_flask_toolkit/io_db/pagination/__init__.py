@@ -1,2 +1,2 @@
 from io_flask_toolkit.io_db.pagination.io_pagination import IoPagination
-from io_db.pagination.decorators import pageable_content
+from io_flask_toolkit.io_db.pagination.decorators import pageable_content
