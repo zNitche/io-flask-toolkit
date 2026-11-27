@@ -1,7 +1,12 @@
 from functools import wraps
 from datetime import datetime
-from flask import redirect, url_for, session, abort, g, request
-from io_remastered import authentication_manager
+from io_authentication import AuthenticationManager
+from io_flask_toolkit import FLASK_EXTENSION_NAME
+from flask import redirect, url_for, session, abort, g, request, current_app
+
+
+def __get_auth_manager() -> AuthenticationManager:
+    return current_app.extensions[FLASK_EXTENSION_NAME].authentication_manager
 
 
 def login_required(f):
@@ -12,6 +17,7 @@ def login_required(f):
         if not auth_token:
             abort(401)
 
+        authentication_manager = __get_auth_manager()
         current_user = authentication_manager.user_for_token(auth_token)
 
         if not current_user:
@@ -30,10 +36,11 @@ def login_required(f):
 def anonymous_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        authentication_manager = __get_auth_manager()
         auth_token = session.get("auth_token")
 
         if auth_token and authentication_manager.token_exists(auth_token):
-            return redirect(url_for("core.home"))
+            return redirect(url_for(authentication_manager.logged_in_route))
 
         return f(*args, **kwargs)
     return decorated_function
@@ -42,6 +49,8 @@ def anonymous_only(f):
 def password_authentication_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        authentication_manager = __get_auth_manager()
+
         origin_url = request.base_url
         referrer_url = request.referrer
 
@@ -49,7 +58,10 @@ def password_authentication_required(f):
             return authentication_manager.set_password_authentication_origin(origin_url=origin_url,
                                                                              referrer_url=referrer_url)
 
-        password_auth_page_url = url_for("auth.password_authentication")
+        if authentication_manager.password_authentication_route is None:
+            raise Exception("password_authentication_route is set to None")
+
+        password_auth_page_url = url_for(authentication_manager.password_authentication_route)
         last_auth = authentication_manager.get_last_password_authentication()
 
         if not last_auth:

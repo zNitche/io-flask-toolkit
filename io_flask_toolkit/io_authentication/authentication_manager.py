@@ -3,8 +3,8 @@ from uuid import uuid4
 from dataclasses import dataclass
 from datetime import datetime
 from flask import g, session
-from io_remastered import models
-from io_remastered.extra_modules import InMemoryDatabase
+from io_flask_toolkit.io_extras import InMemoryDatabase
+from io_flask_toolkit.io_authentication.models.base_user_model import BaseUserModel 
 
 
 @dataclass
@@ -23,9 +23,17 @@ class UserSessionsDetails:
 
 
 class AuthenticationManager:
-    def __init__(self, auth_db: InMemoryDatabase):
-        self.__default_auth_token_ttl = 600
+    def __init__(self, auth_db: InMemoryDatabase,
+                 user_model: type[BaseUserModel],
+                 logged_in_route: str,
+                 password_authentication_route: str | None = None):
 
+        self.user_model = user_model
+
+        self.logged_in_route = logged_in_route
+        self.password_authentication_route = password_authentication_route
+
+        self.__default_auth_token_ttl = 600
         self.__auth_db = auth_db
 
     def setup(self, default_auth_token_ttl: None | int = 600):
@@ -77,10 +85,10 @@ class AuthenticationManager:
         return True if key is not None else False
 
     @property
-    def current_user(self) -> models.User:
+    def current_user(self) -> BaseUserModel:
         return g.get("current_user", None)
 
-    def user_for_token(self, token: str | None) -> models.User | None:
+    def user_for_token(self, token: str | None) -> BaseUserModel | None:
         if not token:
             return None
 
@@ -103,8 +111,7 @@ class AuthenticationManager:
 
         user_id = int(split_key[1])
 
-        user = models.User.query(
-            models.User.select().filter_by(id=user_id)).first()
+        user = BaseUserModel.query().filter_by(id=user_id).first()
 
         return user
 

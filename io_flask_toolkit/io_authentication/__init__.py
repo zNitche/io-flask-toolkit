@@ -1,1 +1,2 @@
-from io_remastered.authentication.authentication_manager import AuthenticationManager
+from io_flask_toolkit.io_authentication.authentication_manager import AuthenticationManager
+from io_flask_toolkit.io_authentication import decorators
