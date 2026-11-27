@@ -1,5 +1,6 @@
 from alembic import command, config
 from sqlalchemy import Engine
+from importlib.resources import files, as_file
 import os
 import shutil
 
@@ -14,16 +15,19 @@ def get_config(migrations_dir: str, db_engine: Engine):
     return cfg
 
 
-def init_migrations(env_template_path: str, migrations_dir: str, db_engine: Engine):
+def init_migrations(migrations_dir: str, db_engine: Engine):
     if not os.path.exists(migrations_dir):
         target_path = os.path.join(migrations_dir, "env.py")
+        template_path = os.path.join("io_db", "alembic_template", "env.template.py")
+        template_source = files(anchor="io_flask_toolkit").joinpath(template_path)
 
         cfg = get_config(migrations_dir, db_engine)
 
         command.init(cfg, migrations_dir)
-
         os.makedirs(exist_ok=True, name=os.path.dirname(target_path))
-        shutil.copy2(env_template_path, target_path)
+
+        with as_file(template_source) as template_source_path:
+            shutil.copy2(template_source_path, target_path)
 
         command.stamp(cfg, "head", purge=True)
 

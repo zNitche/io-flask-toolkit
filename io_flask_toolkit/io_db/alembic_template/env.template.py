@@ -19,6 +19,7 @@ if config.config_file_name is not None:
 
 def get_target_metadata():
     from io_flask_toolkit.io_db import IoModelBase
+    # from io_flask_app import models
 
     return IoModelBase.metadata
 
