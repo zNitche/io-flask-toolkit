@@ -23,11 +23,17 @@ classifiers = [
 requires-python = ">=3.10"
 
 [project.optional-dependencies]
-db = [
+base = [
+    "Flask==3.1.3",
+]
+sql = [
     "SQLAlchemy==2.1.9",
     "alembic==1.20.1"
 ]
-all = ["io_flask_toolkit[db]"]
+in_memory_db = [
+    "whimdb @ git+https://github.com/zNitche/whimdb.git@v1.2.9",
+]
+all = ["io_flask_toolkit[base,sql,in_memory_db]"]
 
 [tool.setuptools.dynamic]
 version = {attr = "io_flask_toolkit.__version__"}
