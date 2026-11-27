@@ -17,4 +17,4 @@ class Config:
     LOGS_DIR_PATH = os.path.join(CURRENT_DIR, "logs")
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    DATABASE_URI = f"sqlite:///:memory:"
+    DATABASE_URI = f"sqlite:////{CURRENT_DIR}/database/app.db"
