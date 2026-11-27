@@ -54,7 +54,7 @@ class AuthenticationManager:
         self.__auth_db.set_value(
             key=auth_db_key, value=value.__dict__, ttl=self.__default_auth_token_ttl)
 
-        session["auth_token"] = token
+        session["io_auth_token"] = token
 
     def refresh(self, token: str, user_id: int):
         auth_db_key = self.get_auth_db_key_pattern(
@@ -64,7 +64,7 @@ class AuthenticationManager:
             key=auth_db_key, ttl=self.__default_auth_token_ttl)
 
     def logout(self):
-        token = session.get("auth_token")
+        token = session.get("io_auth_token")
         current_user = self.current_user
 
         if token is not None and current_user:
@@ -86,7 +86,7 @@ class AuthenticationManager:
 
     @property
     def current_user(self) -> BaseUserModel:
-        return g.get("current_user", None)
+        return g.get("io_current_user", None)
 
     def user_for_token(self, token: str | None) -> BaseUserModel | None:
         if not token:
@@ -116,10 +116,10 @@ class AuthenticationManager:
         return user
 
     def get_auth_token_for_current_session(self):
-        return session.get("auth_token")
+        return session.get("io_auth_token")
 
     def get_last_password_authentication(self):
-        iso_string = session.get("last_password_authentication")
+        iso_string = session.get("io_last_password_authentication")
 
         if iso_string is not None:
             iso_string = datetime.fromisoformat(iso_string)
@@ -127,18 +127,18 @@ class AuthenticationManager:
         return iso_string
 
     def set_password_authentication_origin(self, origin_url: str | None, referrer_url: str | None):
-        session["password_authentication_origin"] = origin_url
-        session["password_authentication_referrer"] = referrer_url
+        session["io_password_authentication_origin"] = origin_url
+        session["io_password_authentication_referrer"] = referrer_url
 
     def get_password_authentication_origin(self):
-        origin_url = session.get("password_authentication_origin")
-        referrer_url = session.get("password_authentication_referrer")
+        origin_url = session.get("io_password_authentication_origin")
+        referrer_url = session.get("io_password_authentication_referrer")
 
         return origin_url, referrer_url
 
     def set_last_password_authentication(self):
         now = datetime.now().isoformat()
-        session["last_password_authentication"] = now
+        session["io_last_password_authentication"] = now
 
         self.set_password_authentication_origin(
             origin_url=None, referrer_url=None)
@@ -205,7 +205,7 @@ class AuthenticationManager:
             session.clear()
 
         else:
-            lang = session.get("lang")
+            lang = session.get("io_lang")
             session.clear()
 
-            session["lang"] = lang
+            session["io_lang"] = lang

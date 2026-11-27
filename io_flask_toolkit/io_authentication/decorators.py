@@ -12,7 +12,7 @@ def __get_auth_manager() -> AuthenticationManager:
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        auth_token = session.get("auth_token")
+        auth_token = session.get("io_auth_token")
 
         if not auth_token:
             abort(401)
@@ -24,7 +24,7 @@ def login_required(f):
             authentication_manager.logout()
             abort(401)
 
-        setattr(g, "current_user", current_user)
+        setattr(g, "io_current_user", current_user)
 
         authentication_manager.refresh(
             token=auth_token, user_id=current_user.id)
@@ -37,7 +37,7 @@ def anonymous_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         authentication_manager = __get_auth_manager()
-        auth_token = session.get("auth_token")
+        auth_token = session.get("io_auth_token")
 
         if auth_token and authentication_manager.token_exists(auth_token):
             return redirect(url_for(authentication_manager.logged_in_route))
