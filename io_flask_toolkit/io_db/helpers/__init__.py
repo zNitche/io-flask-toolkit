@@ -1,1 +1,1 @@
-from ao3_web_reader.db.helpers.query import Query
+from io_db.helpers.query import Query

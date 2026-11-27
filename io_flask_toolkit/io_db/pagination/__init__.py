@@ -1,2 +1,2 @@
-from ao3_web_reader.db.pagination.pagination import Pagination
-from ao3_web_reader.db.pagination.decorators import pageable_content
+from io_db.pagination.pagination import Pagination
+from io_db.pagination.decorators import pageable_content

@@ -1,7 +1,7 @@
 from typing import Self
 from sqlalchemy import Select, func, select, ScalarResult, MetaData
 from sqlalchemy.orm import scoped_session, DeclarativeBase, Session
-from ao3_web_reader.db.helpers import Query
+from io_db.helpers import Query
 
 
 class ModelBase(DeclarativeBase):

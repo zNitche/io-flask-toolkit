@@ -2,7 +2,6 @@ from alembic import command, config
 from sqlalchemy import Engine
 import os
 import shutil
-from config import PROJECT_ROOT
 
 
 def get_config(migrations_dir: str, db_engine: Engine):
@@ -15,10 +14,8 @@ def get_config(migrations_dir: str, db_engine: Engine):
     return cfg
 
 
-def init_migrations(migrations_dir: str, db_engine: Engine):
+def init_migrations(env_template_path: str, migrations_dir: str, db_engine: Engine):
     if not os.path.exists(migrations_dir):
-        env_template_path = os.path.join(
-                    PROJECT_ROOT, "ao3_web_reader", "db", "alembic_template", "env.template.py")
         target_path = os.path.join(migrations_dir, "env.py")
 
         cfg = get_config(migrations_dir, db_engine)

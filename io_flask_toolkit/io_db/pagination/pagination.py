@@ -1,7 +1,7 @@
 from typing import TypeVar
 from sqlalchemy import Select
-from ao3_web_reader.db.helpers import Query
-from ao3_web_reader.db.model_base import ModelBase
+from io_db.helpers import Query
+from io_db.model_base import ModelBase
 
 T = TypeVar("T", bound="ModelBase")
 

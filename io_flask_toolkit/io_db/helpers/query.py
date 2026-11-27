@@ -6,7 +6,7 @@ from sqlalchemy import ScalarResult, Select, ColumnExpressionArgument
 
 # additional for pylance I guess...
 if TYPE_CHECKING:
-    from ao3_web_reader.db import ModelBase
+    from io_db import ModelBase
 
 # some syntax sugar for avoiding calling
 # next_chapter = Chapter.query(Chapter.select().filter_by(work_id=self.work_id)).first()
