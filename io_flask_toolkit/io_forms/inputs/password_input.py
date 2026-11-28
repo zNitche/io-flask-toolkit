@@ -1,5 +1,5 @@
 from typing import Any
-from io_remastered.io_forms.inputs import InputBase
+from io_flask_toolkit.io_forms.inputs import InputBase
 
 
 class PasswordInput(InputBase):

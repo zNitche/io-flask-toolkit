@@ -1,7 +1,7 @@
 from typing import Literal, Any
-from io_remastered.io_forms.inputs.input_label import InputLabel
-from io_remastered.io_forms.validators import ValidatorBase
-from io_remastered.io_forms.field_error import FieldError
+from io_flask_toolkit.io_forms.inputs.input_label import InputLabel
+from io_flask_toolkit.io_forms.validators import ValidatorBase
+from io_flask_toolkit.io_forms.field_error import FieldError
 
 INPUT_TYPES = Literal[
     "text",

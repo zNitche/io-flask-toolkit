@@ -1,4 +1,4 @@
-from io_remastered.io_forms.validators import ValidatorBase
+from io_flask_toolkit.io_forms.validators import ValidatorBase
 
 
 class MinLengthValidator(ValidatorBase):

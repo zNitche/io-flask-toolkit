@@ -1,4 +1,4 @@
-from io_remastered.io_forms.inputs import InputBase, CSRFTokenField
+from io_flask_toolkit.io_forms.inputs import InputBase, CSRFTokenField
 
 
 class Form:
