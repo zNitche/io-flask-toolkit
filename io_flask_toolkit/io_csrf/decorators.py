@@ -1,6 +1,6 @@
 from functools import wraps
 from flask import abort, request
-from io_remastered.io_csrf import CSRF
+from io_flask_toolkit.io_csrf.csrf import CSRF
 
 
 def csrf_protected(skipped_methods=["GET"]):
