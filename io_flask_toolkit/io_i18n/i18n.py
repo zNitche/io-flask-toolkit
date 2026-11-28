@@ -31,7 +31,7 @@ class I18n:
             raise Exception(
                 "i18n context processor called outside app context")
 
-        language_key = session.get("lang")
+        language_key = session.get("io_lang")
 
         if not language_key:
             return i18n_key
@@ -68,10 +68,10 @@ class I18n:
             raise Exception(
                 "i18n before request handler called outside app context")
 
-        language_key = session.get("lang")
+        language_key = session.get("io_lang")
 
         if not language_key or language_key not in self.__translations.keys():
-            session["lang"] = self.default_lang
+            session["io_lang"] = self.default_lang
 
     def setup(self, app: Flask):
         self.__load_translations()
