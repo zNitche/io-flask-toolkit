@@ -1,7 +1,7 @@
 from typing import Any
 import logging
-from io_remastered.io_logging import common
-from io_remastered.io_logging.adapters import ExtendableLogsAdapter
+from io_flask_toolkit.io_logging import common
+from io_flask_toolkit.io_logging.adapters import ExtendableLogsAdapter
 
 
 class Logger:

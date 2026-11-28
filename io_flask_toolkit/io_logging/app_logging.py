@@ -1,6 +1,6 @@
 from flask import Flask
 from flask.logging import create_logger
-from io_remastered.io_logging import common
+from io_flask_toolkit.io_logging import common
 
 
 class AppLogging:
