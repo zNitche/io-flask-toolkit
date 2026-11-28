@@ -3,7 +3,8 @@ requires = ["setuptools==84.2.1"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-exclude = ["flask_app*", "tests*"]
+where = ["."]
+include = ["io_flask_toolkit*"]
 
 [project]
 name = "io_flask_toolkit"
