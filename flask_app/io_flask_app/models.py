@@ -1,9 +1,10 @@
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import mapped_column, Mapped
 from io_flask_toolkit.io_db import IoModelBase
+from io_flask_toolkit.io_authentication import IoBaseUserModel
 
 
-class User(IoModelBase):
+class User(IoBaseUserModel):
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)

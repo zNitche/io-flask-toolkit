@@ -1,2 +1,3 @@
 from io_flask_toolkit.io_authentication.io_authentication_manager import IoAuthenticationManager
 from io_flask_toolkit.io_authentication import decorators
+from io_flask_toolkit.io_authentication.models.io_base_user_model import IoBaseUserModel

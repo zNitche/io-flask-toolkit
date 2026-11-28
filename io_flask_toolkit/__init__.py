@@ -6,7 +6,7 @@ from flask import Flask
 
 # for pylance
 if TYPE_CHECKING:
-    from io_authentication import IoAuthenticationManager
+    from io_flask_toolkit.io_authentication import IoAuthenticationManager
 
 
 __version__ = "0.0.0"
